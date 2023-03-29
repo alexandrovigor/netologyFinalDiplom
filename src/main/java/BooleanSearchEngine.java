@@ -32,7 +32,10 @@ public class BooleanSearchEngine implements SearchEngine {
                     } else {
                         allWords.put(word, new ArrayList<>());
                         allWords.get(word).add(pageEntry);
+
                     }
+
+                    allWords.values().forEach(Collections::sort);
                 }
             }
         }
@@ -40,11 +43,13 @@ public class BooleanSearchEngine implements SearchEngine {
 
     @Override
     public List<PageEntry> search(String word) {
-        List<PageEntry> result = allWords.get(word);
-        Collections.sort(result);
-        return result;
+        List<PageEntry> result;
+        String anyWord = word.toLowerCase();
+        result = allWords.get(anyWord);
+        return Objects.requireNonNullElse(result, Collections.emptyList());
     }
 }
+
 
 
 

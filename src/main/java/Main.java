@@ -12,8 +12,7 @@ public class Main {
                         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         PrintWriter out = new PrintWriter(socket.getOutputStream());
                 ) {
-                    String anySearch = in.readLine();
-                    String search = anySearch.toLowerCase();
+                    String search = in.readLine();
                     String answer = engine.search(search).toString();
                     out.print(answer);
                 }
